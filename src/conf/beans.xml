@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Setter Injection with scope prototype -->
+	<bean id="helloWorld" class="com.spring.test.xmlConfig.pojos.HelloWorld"
+		scope="prototype">
+		<property name="message" value="Hello EveryOne!Welcome to Spring" />
+	</bean>
+
+	<!-- Setter Injection with scope singleton <bean id="helloWorld" class="com.spring.test.xmlConfig.pojos.HelloWorld" 
+		scope="prototype"> <property name="message" value="Hello EveryOne!Welcome 
+		to Spring"/> </bean> -->
+
+	<bean id="account1" class="com.spring.test.xmlConfig.pojos.BankAccount">
+		<property name="accountNumber" value="123456" />
+		<property name="bankName" value="CITI" />
+		<property name="branchName" value="SEZ" />
+
+	</bean>
+
+	<!-- Constructor Injection with index -->
+	<bean id="account2" class="com.spring.test.xmlConfig.pojos.BankAccount">
+		<constructor-arg index="0" value="654321"></constructor-arg>
+		<constructor-arg index="1" value="SBI"></constructor-arg>
+		<constructor-arg index="2" value="TBM"></constructor-arg>
+	</bean>
+
+	<!-- Constructor Injection with name -->
+	<bean id="account3" class="com.spring.test.xmlConfig.pojos.BankAccount">
+		<constructor-arg name="accountNumber" value="555555"></constructor-arg>
+		<constructor-arg name="bankName" value="IOB"></constructor-arg>
+		<constructor-arg name="branchName" value="TCO"></constructor-arg>
+	</bean>
+
+
+	<!-- constructor Injection with ref -->
+	<bean id="employee1" class="com.spring.test.xmlConfig.pojos.Employee">
+		<constructor-arg name="empId" value="570670"></constructor-arg>
+		<constructor-arg name="name" value="Vijay"></constructor-arg>
+		<constructor-arg name="sal" value="20000"></constructor-arg>
+		<constructor-arg name="salAcc" ref="account1"></constructor-arg>
+	</bean>
+	<!-- Setter Injection with ref -->
+
+	<bean id="employee2" class="com.spring.test.xmlConfig.pojos.Employee">
+		<property name="empId" value="570671" />
+		<property name="name" value="Krishna" />
+		<property name="sal" value="25000" />
+		<property name="salAcc" ref="account2" />
+	</bean>
+	<!-- constructor Injection with nested bean -->
+
+	<bean id="employee3" class="com.spring.test.xmlConfig.pojos.Employee">
+		<constructor-arg name="empId" value="570672"></constructor-arg>
+		<constructor-arg name="name" value="sathya"></constructor-arg>
+		<constructor-arg name="sal" value="30000"></constructor-arg>
+		<constructor-arg name="salAcc">
+			<bean id="salAccount" class="com.spring.test.xmlConfig.pojos.BankAccount">
+				<property name="accountNumber" value="777777" />
+				<property name="bankName" value="HDFC" />
+				<property name="branchName" value="PKN" />
+			</bean>
+		</constructor-arg>
+	</bean>
+	<!-- setter Injection with nested bean -->
+	<bean id="employee4" class="com.spring.test.xmlConfig.pojos.Employee">
+		<property name="empId" value="570673" />
+		<property name="name" value="Moorthi" />
+		<property name="sal" value="35000" />
+		<property name="salAcc">
+			<bean id="salAccount1" class="com.spring.test.xmlConfig.pojos.BankAccount">
+				<property name="accountNumber" value="888888" />
+				<property name="bankName" value="IDBC" />
+				<property name="branchName" value="DLF" />
+			</bean>
+		</property>
+	</bean>
+	 <bean id="employee5" class="com.spring.test.xmlConfig.pojos.Employee">
+		<constructor-arg index="0" value="Selva" />
+		<constructor-arg index="1" value="570674" />
+		<constructor-arg index="2" value="40000" />
+		<constructor-arg index="3">
+			<bean id="salAccount2" class="com.spring.test.xmlConfig.pojos.BankAccount">
+				<property name="accountNumber" value="888888" />
+				<property name="bankName" value="IDBC" />
+				<property name="branchName" value="DLF" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- Collection injection using nested bean -->
+
+	<bean id="inv1" class="com.spring.test.xmlConfig.pojos.StationaryInventory">
+		<property name="books">
+			<list>
+				<bean id="book1" class="com.spring.test.xmlConfig.pojos.Book">
+					<property name="title" value="Let Us C" />
+					<property name="price" value="120" />
+				</bean>
+				<bean id="book2" class="com.spring.test.xmlConfig.pojos.Book">
+					<property name="title" value="Let Us Java" />
+					<property name="price" value="240" />
+				</bean>
+				<bean id="book3" class="com.spring.test.xmlConfig.pojos.Book">
+					<property name="title" value="Let Us .Net" />
+					<property name="price" value="360" />
+				</bean>
+			</list>
+		</property>
+		<property name="disks">
+			<set>
+				<bean id="disk1" class="com.spring.test.xmlConfig.pojos.Disk">
+					<property name="title" value="C" />
+					<property name="price" value="120" />
+					<property name="type" value="CD" />
+				</bean>
+				<bean id="disk2" class="com.spring.test.xmlConfig.pojos.Disk">
+					<property name="title" value="Java" />
+					<property name="price" value="240" />
+					<property name="type" value="VCD" />
+
+				</bean>
+				<bean id="disk3" class="com.spring.test.xmlConfig.pojos.Disk">
+					<property name="title" value=".Net" />
+					<property name="price" value="360" />
+					<property name="type" value="DCD" />
+
+				</bean>
+			</set>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+  <!--  <bean id="salAcc" class="com.spring.test.xmlConfig.pojos.BankAccount">
+		<property name="accountNumber" value="123456" />
+		<property name="bankName" value="CITI" />
+		<property name="branchName" value="SEZ" />
+
+	</bean> -->
+
+	<bean id="loanAcc" class="com.spring.test.xmlConfig.pojos.BankAccount">
+		<constructor-arg index="0" value="654321"></constructor-arg>
+		<constructor-arg index="1" value="SBI"></constructor-arg>
+		<constructor-arg index="2" value="TBM"></constructor-arg>
+	</bean>
+	
+	<bean id="employee2" class="com.spring.test.xmlConfig.pojos.Employee" autowire="byType">
+		<property name="empId" value="570671" />
+		<property name="name" value="Krishna" />
+		<property name="sal" value="25000" />
+	</bean>
+	
+ </beans>
+    
